@@ -30,20 +30,14 @@ public class WebhookController: ControllerBase
         return Ok();
     }
     
-    [HttpPost("customer/{customerId}")]
+    [HttpPost("customer/convert-lead")]
     public async Task<IActionResult> HandlerConvertedFromLeadToCustomerNotification(
                                     [FromBody]ConvertedFromLeadToCustomerCommand command,
-                                    [FromQuery] string validationToken,
-                                    [FromRoute] string customerId)
+                                    [FromQuery] string validationToken)
     {
         if (!validationToken.IsNullOrEmpty())
         {
             return Content(validationToken, "text/plain");
-        }
-
-        if (command != default)
-        {
-            command.CustomerId = customerId;
         }
 
         await _mediator.Send(command);

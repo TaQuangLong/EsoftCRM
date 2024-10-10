@@ -34,4 +34,26 @@ public class CrmDbContext: DbContext
         
         modelBuilder.Entity<PricingAgreement>().HasIndex(p => new { p.CustomerId, p.ProductId });
     }
+
+    public override Task<int> SaveChangesAsync(CancellationToken token = default)
+    {
+        var now = DateTime.UtcNow;
+
+        foreach (var entry in ChangeTracker.Entries<ITrackedEntity>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.DateCreated = now;
+                    entry.Entity.DateModified = now;
+                    break;
+                
+                case EntityState.Modified:
+                    entry.Entity.DateModified = now;
+                    break;
+            }
+        }
+
+        return base.SaveChangesAsync(token);
+    }
 }
