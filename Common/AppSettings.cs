@@ -4,7 +4,7 @@ public class AppSettings
 {
     public static ConnectionString ConnectionStrings { get; set; }
     
-    public static ServiceBusConnection ServiceBusConnection { get; set; }
+    public static ServiceBus ServiceBus { get; set; }
 
     public static CrmApi CrmApi { get; set; }
 }
@@ -15,9 +15,9 @@ public class ConnectionString
     public string EsoftCRM { get; set; }
 }
 
-public class ServiceBusConnection
+public class ServiceBus
 {
-    public string ServiceBus { get; set; }
+    public string ConnectionString { get; set; }
 }
 
 public class CrmApi

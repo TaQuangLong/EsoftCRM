@@ -8,7 +8,6 @@ using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
 
 builder.Configuration.Get<AppSettings>();
 
@@ -22,9 +21,8 @@ builder.Services.AddMassTransit(x =>
     x.AddConsumer<PricingAgreementConsumer>();
     x.UsingAzureServiceBus((context, cfg) =>
     {
-        cfg.Host(AppSettings.ServiceBusConnection.ServiceBus);
+        cfg.Host(AppSettings.ServiceBus.ConnectionString);
 
-        // Optional: Configure endpoints, message handlers, etc.
         cfg.ConfigureEndpoints(context);
     });
 });
@@ -40,10 +38,14 @@ builder.Services.AddMediatR(cfg =>
 builder.Services.AddScoped<ICQRSClient, CQRSClient>();
 builder.Services.AddScoped<IPIMClient, PIMClient>();
 
+var app = builder.Build();
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.MapControllers();
 

@@ -1,5 +1,4 @@
-﻿
-using Common;
+﻿using Common;
 using Common.Config;
 using CRM.Api.Dtos;
 using Flurl.Http;

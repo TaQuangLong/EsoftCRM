@@ -1,4 +1,5 @@
-﻿using CRM.Api.Messages;
+﻿using Common.Config;
+using CRM.Api.Messages;
 using MassTransit;
 
 namespace CRM.Api.CQRS;
@@ -14,6 +15,14 @@ public class CQRSClient: ICQRSClient
 
     public async Task PublishAsync<T>(T message) where T : MessageBase
     {
-        await _bus.Publish(message);
+        try
+        {
+            await _bus.Publish(message);
+
+        }
+        catch (Exception e)
+        {
+            throw Exceptions.PublishMessageToServicesBusFailed;
+        }
     }
 }
