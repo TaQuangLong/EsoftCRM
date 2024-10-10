@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRM.Api", "CRM.Api\CRM.Api.csproj", "{D169918E-7F1C-4E59-A58D-27CA2D3F946E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{0B9E4BB5-7945-4B6E-833E-7AE1D652F9FD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D169918E-7F1C-4E59-A58D-27CA2D3F946E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D169918E-7F1C-4E59-A58D-27CA2D3F946E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D169918E-7F1C-4E59-A58D-27CA2D3F946E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D169918E-7F1C-4E59-A58D-27CA2D3F946E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B9E4BB5-7945-4B6E-833E-7AE1D652F9FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B9E4BB5-7945-4B6E-833E-7AE1D652F9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B9E4BB5-7945-4B6E-833E-7AE1D652F9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B9E4BB5-7945-4B6E-833E-7AE1D652F9FD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
