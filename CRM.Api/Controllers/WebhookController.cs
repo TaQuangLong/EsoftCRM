@@ -18,28 +18,16 @@ public class WebhookController: ControllerBase
 
     [HttpPost("customer-created")]
     public async Task<IActionResult> HandlerRegisterCustomerNotification(
-                            [FromBody]RegisterCustomerCommand command, [FromQuery] string validationToken)
+                            [FromBody]RegisterCustomerCommand command)
     {
-        
-        if (!validationToken.IsNullOrEmpty())
-        {
-            return Content(validationToken, "text/plain");
-        }
-
         await _mediator.Send(command);
         return Ok();
     }
     
     [HttpPost("lead-converted")]
     public async Task<IActionResult> HandlerConvertedFromLeadToCustomerNotification(
-                                    [FromBody]ConvertedFromLeadToCustomerCommand command,
-                                    [FromQuery] string validationToken)
+                                    [FromBody]ConvertedFromLeadToCustomerCommand command)
     {
-        if (!validationToken.IsNullOrEmpty())
-        {
-            return Content(validationToken, "text/plain");
-        }
-
         await _mediator.Send(command);
         return Ok();
     }
