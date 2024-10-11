@@ -6,6 +6,7 @@ using CRM.Api.CQRS;
 using CRM.Api.Model;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,17 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddScoped<ICQRSClient, CQRSClient>();
 builder.Services.AddScoped<IPIMClient, PIMClient>();
+
+builder.Host.UseSerilog((_, configuration) =>
+{
+    configuration
+        .MinimumLevel.Information()
+        .Enrich.FromLogContext()
+        .Destructure.ToMaximumDepth(6)
+        .WriteTo.Console()
+        .WriteTo.File("Logs/log.txt")
+        .WriteTo.Seq("SeqLoggingUrl");
+});
 
 var app = builder.Build();
 
